@@ -10,70 +10,72 @@ This document outlines best practices for using Git to ensure privacy and effici
 # Best Practices
 
 1. **Configuring Git Identity**:
-   - Use a non-personal email for commits to protect privacy.
-   ```bash
-   git config --global user.name "Your Preferred Name"
-   git config --global user.email "your-email@domain.com"
-   ```
+- Use a non-personal email for commits to protect privacy.
+```bash
+git config --global user.name "Your Preferred Name"
+git config --global user.email "your-email@domain.com"
+```
 
 2. **Commit Messages**:
-   - Write clear and concise commit messages.
-   ```bash
-   git commit -m "Describe the changes made in this commit"
-   ```
+- Write clear and concise commit messages.
+```bash
+git commit -m "Describe the changes made in this commit"
+```
 
 3. **Ignoring Sensitive Files**:
-   - Use a `.gitignore` file to exclude sensitive or unnecessary files.
-   ```bash
-    cat <<EOL >> .gitignore
-    # Ignore data files
-    *.csv
-    *.json
-    *.xml
+- Use a `.gitignore` file to exclude sensitive or unnecessary files.
+To ensure the formatting is preserved when copying and pasting into the terminal, use indentation and avoid extra spaces or tabs. Here's how you can properly format the command:
 
-    # Ignore images
-    *.png
-    *.jpg
-    *.jpeg
-    *.gif
+```bash
+cat <<EOL >> .gitignore
+# Ignore data files
+*.csv
+*.json
+*.xml
 
-    # Ignore LLM context file
-    LLM_helper_file_context.txt
+# Ignore images
+*.png
+*.jpg
+*.jpeg
+*.gif
 
-    # Ignore OS files
-    .DS_Store
+# Ignore LLM context file
+LLM_helper_file_context.txt
 
-    # Ignore IDE files
-    .idea/
-    .vscode/
+# Ignore OS files
+.DS_Store
 
-    # Ignore log files
-    *.log
-    EOL
-   ```
+# Ignore IDE files
+.idea/
+.vscode/
+
+# Ignore log files
+*.log
+EOL
+```
 
 4. **Rewriting History**:
-   - Use `git filter-repo` to clean up sensitive information from commit history.
-   ```bash
-   git filter-repo --commit-callback '
-   if commit.author_email == b"your-email@domain.com":
-       commit.author_email = b"noreply-email@domain.com"
-       commit.committer_email = b"noreply-email@domain.com"
-   ' --force
-   ```
+- Use `git filter-repo` to clean up sensitive information from commit history.
+```bash
+git filter-repo --commit-callback '
+if commit.author_email == b"your-email@domain.com":
+    commit.author_email = b"noreply-email@domain.com"
+    commit.committer_email = b"noreply-email@domain.com"
+' --force
+```
 
 5. **Pushing Changes**:
-   - Use `git push` to push changes to the remote repository securely.
-   ```bash
-   git push --force --tags origin 'refs/heads/*'
-   ```
+- Use `git push` to push changes to the remote repository securely.
+```bash
+git push --force --tags origin 'refs/heads/*'
+```
 
 # Folder Structure
 ```
 ~/repos/
 └── git_best_practices/
-    ├── README.md
-    └── .gitignore
+├── README.md
+└── .gitignore
 ```
 
 # Additional Resources
