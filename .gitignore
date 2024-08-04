@@ -1,0 +1,23 @@
+# Ignore data files
+*.csv
+*.json
+*.xml
+
+# Ignore images
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# Ignore LLM context file
+LLM_helper_file_context.txt
+
+# Ignore OS files
+.DS_Store
+
+# Ignore IDE files
+.idea/
+.vscode/
+
+# Ignore log files
+*.log
